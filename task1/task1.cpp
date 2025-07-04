@@ -6,7 +6,7 @@ int main() {
     std::cout << "Введите n и m: ";
     std::cin >> n >> m;
 
-    // Круговой массив
+    // Формируем круговой массив
     std::vector<int> arr(n);
     for (int i = 0; i < n; ++i)
         arr[i] = i + 1;
@@ -15,10 +15,12 @@ int main() {
     for (int x : arr) std::cout << x;
     std::cout << std::endl;
 
+    // Путь, интервалы, стартовый индекс
     std::vector<int> path;
     std::vector<std::vector<int>> intervals;
     int start_idx = 0;
 
+    // Строим интервалы по кругу и формируем путь, пока не встретим повтор первого элемента
     while (true) {
         path.push_back(arr[start_idx]);
         std::vector<int> interval;
@@ -31,6 +33,7 @@ int main() {
         start_idx = next_idx;
     }
 
+    // Вывод результатов
     std::cout << "При длине обхода " << m << " получаем интервалы: ";
     for (size_t i = 0; i < intervals.size(); ++i) {
         for (size_t j = 0; j < intervals[i].size(); ++j) {
